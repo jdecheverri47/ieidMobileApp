@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:ieid/pages/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:ieid/pages/login_page.dart';
+import 'package:ieid/pages/profile_pic_page.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
       ),
       home: const AuthPage(),
       routes: {
-        "/login":(context) => const LoginPage()
+        "/login":(context) => const LoginPage(),
+        "/edit-profile":(context) => const ProfilePicPage()
       },
     );
   }

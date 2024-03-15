@@ -1,11 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ieid/components/my_button.dart';
+import 'package:ieid/pages/profile_pic_page.dart';
 import 'package:share_plus/share_plus.dart';
 
 class ProfileButtons extends StatelessWidget {
 
-  const ProfileButtons({super.key});
+  final String? imageUrl;
+
+  const ProfileButtons({super.key, this.imageUrl});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +20,7 @@ class ProfileButtons extends StatelessWidget {
             height: 30.0,
             color: const Color.fromRGBO(255, 232, 55, 1),
             onPressed: () {
-              final String url = 'https://thehun-infections-pursue-ordering.trycloudflare.com/forms?user=${FirebaseAuth.instance.currentUser!.uid}';
-              Share.share(url);
+              Navigator.push(context, MaterialPageRoute(builder: (context)=> ProfilePicPage(photoUrl: imageUrl,)));
             },
           ),
           Padding(
@@ -29,7 +31,7 @@ class ProfileButtons extends StatelessWidget {
               height: 30.0,
               color: const Color.fromRGBO(255, 232, 55, 1),
               onPressed: () {
-                final String url = 'https://thehun-infections-pursue-ordering.trycloudflare.com/forms?user=${FirebaseAuth.instance.currentUser!.uid}';
+                final String url = 'https://tutarjetadigital.iegrupo.co/forms?user=${FirebaseAuth.instance.currentUser!.uid}';
                 Share.share(url);
               },
             ),

@@ -1,24 +1,24 @@
 
 class UserModel {
-  final String firstname;
-  final String lastname;
+  final String name;
   final String email;
   final String phone;
   final String userId;
+  final String department;
 
   UserModel({
-    required this.firstname,
-    required this.lastname,
+    required this.name,
     required this.email,
     required this.phone,
     required this.userId,
+    required this.department,
   });
 
   Map<String, dynamic> toJson() => {
-    'firstname': firstname,
-    'lastname': lastname,
+    'name': name,
     'email': email,
     'phone': phone,
     'userId': userId,
+    'department': department,
   };
 }

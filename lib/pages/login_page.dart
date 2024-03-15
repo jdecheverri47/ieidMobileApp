@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ieid/components/my_textfields.dart';
 import 'package:ieid/components/my_button.dart';
-import 'package:ieid/pages/register_page.dart';
 import 'package:ieid/utils/my_service.dart';
 
 class LoginPage extends StatefulWidget {

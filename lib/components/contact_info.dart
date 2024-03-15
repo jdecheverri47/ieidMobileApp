@@ -1,40 +1,15 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:ieid/components/profile_buttons.dart';
 
-class ContactInfo extends StatefulWidget {
-  const ContactInfo({Key? key}) : super(key: key);
+class ContactInfo extends StatelessWidget {
 
-  @override
-  State<ContactInfo> createState() => _ContactInfoState();
-}
+  final String? email;
+  final String? phone;
 
-class _ContactInfoState extends State<ContactInfo> {
-  String user = FirebaseAuth.instance.currentUser!.uid;
-
-  Future<Map<String, String>> _getUser() async {
-    DocumentSnapshot doc =
-        await FirebaseFirestore.instance.collection('users').doc(user).get();
-
-    return {
-      'name': doc['name'],
-      'email': doc['email'],
-      'phone': doc['phone'],
-    };
-  }
-
+  const ContactInfo({Key? key, this.email, this.phone}) : super(key: key);
+  
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: _getUser(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.done) {
-          Map<String, String> data = snapshot.data as Map<String, String>;
-          String? email = data['email'];
-          String? phone = data['phone'];
-
-          return Padding(
+    return Padding(
             padding: const EdgeInsets.only(top: 20),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -50,7 +25,6 @@ class _ContactInfoState extends State<ContactInfo> {
                           style: const TextStyle(
                             color: Colors.black,
                             fontSize: 16,
-                            fontFamily: 'Poppins',
                             fontWeight: FontWeight.w400,
                           )),
                     ),
@@ -68,7 +42,6 @@ class _ContactInfoState extends State<ContactInfo> {
                         style: const TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -87,7 +60,6 @@ class _ContactInfoState extends State<ContactInfo> {
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -106,7 +78,6 @@ class _ContactInfoState extends State<ContactInfo> {
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16,
-                          fontFamily: 'Poppins',
                           fontWeight: FontWeight.w400,
                         ),
                       ),
@@ -116,13 +87,8 @@ class _ContactInfoState extends State<ContactInfo> {
               ],
             ),
           );
-        } else {
-          return const Center(
-              child: CircularProgressIndicator(
-            color: Color.fromRGBO(255, 225, 0, 1),
-          ));
-        }
-      },
-    );
   }
+
 }
+
+ 

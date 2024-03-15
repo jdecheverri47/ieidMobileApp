@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ieid/components/home_tab.dart';
-import 'package:ieid/components/qr_section.dart';
 import 'package:ieid/components/user_info.dart';
 
 class HomePage extends StatefulWidget {
@@ -13,10 +12,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-  void function() {
-    print('Hello');
-  }
-
   @override
   Widget build(BuildContext context) {
     void signUserOut() {
@@ -25,20 +20,22 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
+        centerTitle: false,
         shadowColor: Colors.transparent,
         title: const Text(
-          'My QR',
+          'MiTarjetaDigital',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
-            fontSize: 18
+            fontSize: 18,
           ),
+          
         ),
         backgroundColor: const Color.fromRGBO(255, 225, 0, 1),
         actions: [
           IconButton(
             onPressed: signUserOut,
-            icon: const Icon(Icons.logout),
+            icon: Icon(Icons.logout, color: Color.fromARGB(255, 0, 0, 0)),
           )
         ],
       ),
@@ -47,7 +44,6 @@ class _HomePageState extends State<HomePage> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           const MyUserInfo(),
-          const QrSection(),
           const SizedBox(height: 10),
           HomeTab()
 

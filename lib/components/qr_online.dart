@@ -14,7 +14,7 @@ class QrOnline extends StatelessWidget {
       height: 250,
       child: QrImageView(
         data:
-            'https://horizontal-edwards-history-alcohol.trycloudflare.com/forms?user=${user.uid}',
+            'https://tutarjetadigital.iegrupo.co/forms?user=${user.uid}',
         size: 300,
       ),
     );

@@ -30,7 +30,7 @@ class ContactInfo extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 5),
                 Row(
                   children: [
                     const Icon(Icons.phone_android,

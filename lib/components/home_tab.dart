@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:ieid/components/qr_offline.dart';
 import 'package:ieid/components/qr_online.dart';
 
@@ -13,8 +14,8 @@ class _HomeTabState extends State {
     return DefaultTabController(
         length: 2,
         child: Column(children: [
-          ListView(
-            shrinkWrap: true, // Ajusta al contenido
+          SingleChildScrollView(
+              child: Column(
             children: <Widget>[
               const TabBar(
                 tabs: <Widget>[
@@ -43,7 +44,7 @@ class _HomeTabState extends State {
                 ),
               ),
             ],
-          ),
+          )),
         ]));
   }
 }

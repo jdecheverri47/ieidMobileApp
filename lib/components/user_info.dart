@@ -50,28 +50,31 @@ class _MyUserInfoState extends State<MyUserInfo> {
               padding: const EdgeInsets.only(top: 20),
               child: Column(
                 children: [
-                  Row(
-                    verticalDirection: VerticalDirection.down,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      if (photoUrl != "")
-                        CircleAvatar(
-                          radius: 50,
-                          backgroundImage: NetworkImage('$photoUrl'),
-                          backgroundColor: Colors.grey[300],
-                        ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            ProfileInfo(name: '$name', department: department),
-                          ],
-                        ),
-                      )
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      verticalDirection: VerticalDirection.down,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        if (photoUrl != "")
+                          CircleAvatar(
+                            radius: 50,
+                            backgroundImage: NetworkImage('$photoUrl'),
+                            backgroundColor: Colors.grey[300],
+                          ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 10),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              ProfileInfo(name: '$name', department: department),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 30),

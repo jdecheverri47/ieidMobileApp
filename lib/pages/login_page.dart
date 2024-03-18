@@ -16,11 +16,13 @@ class _LoginPageState extends State<LoginPage> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
-
   void setLocalStorage() async {
     final storage = MyService.instance.storage;
     final user = await FirebaseAuth.instance.currentUser!;
-    final doc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+    final doc = await FirebaseFirestore.instance
+        .collection('users')
+        .doc(user.uid)
+        .get();
 
     await storage.ready;
     storage.setItem('user', {
@@ -31,24 +33,22 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void signUserIn() async {
-
     showDialog(
-      context: context,
-      builder: (context) {
-      return const Center(
-        child: CircularProgressIndicator(),
-      );
-    });
+        context: context,
+        builder: (context) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Color.fromRGBO(255, 225, 0, 1),
+            ),
+          );
+        });
 
     try {
       // ignore: unused_local_variable
       final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text,
-        password: passwordController.text
-      );
+          email: emailController.text, password: passwordController.text);
       setLocalStorage();
       Navigator.pop(context);
-
     } on FirebaseAuthException catch (e) {
       Navigator.pop(context);
       if (e.code == "INVALID_LOGIN_CREDENTIALS") {
@@ -56,62 +56,66 @@ class _LoginPageState extends State<LoginPage> {
       } else if (e.code == 'wrong-password') {
         noPasswordMessage();
       } else {
-        print(e);
+        invalidCredentials();
       }
     }
   }
 
   void invalidCredentials() {
     showDialog(
-      context: context,
-      builder: (context) {
-      return AlertDialog(
-        title: const Text('Wrong Credentials'),
-        content: const Text('The email or password you entered is incorrect'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('OK'),
-          )
-        ],
-      );
-    });
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Wrong Credentials'),
+            content:
+                const Text('The email or password you entered is incorrect'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: Text(
+                  'OK',
+                  style: TextStyle(color: Color.fromRGBO(0, 0, 0, 1)),
+                ),
+              ),
+            ],
+          );
+        });
   }
 
   void noPasswordMessage() {
     showDialog(
-      context: context,
-      builder: (context) {
-      return AlertDialog(
-        title: const Text('Wrong Password'),
-        content: const Text('Please type your password.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text('OK'),
-          )
-        ],
-      );
-    });
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            title: const Text('Wrong Password'),
+            content: const Text('Please type your password.'),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text('OK'),
+              )
+            ],
+          );
+        });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body:  SafeArea(
-        child: Center(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+      body: SafeArea(
+          child: Center(
+              child: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
               Row(
                 children: [
                   Image.asset(
@@ -126,7 +130,9 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-              const SizedBox(height: 20,),
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 children: [
                   Column(
@@ -154,18 +160,17 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-
-
-
-              const SizedBox(height: 30,),
-
+              const SizedBox(
+                height: 30,
+              ),
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const Padding(
                     padding: EdgeInsets.symmetric(vertical: 5),
-                    child: Text("Email",
+                    child: Text(
+                      "Email",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -177,9 +182,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ],
               ),
-
               const SizedBox(height: 15),
-
               Padding(
                 padding: const EdgeInsets.only(bottom: 20),
                 child: Column(
@@ -188,11 +191,11 @@ class _LoginPageState extends State<LoginPage> {
                   children: [
                     const Padding(
                       padding: EdgeInsets.symmetric(vertical: 5),
-                      child: Text("Contraseña",
+                      child: Text(
+                        "Contraseña",
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                     ),
-
                     MyTextField(
                       hintText: 'Ingresa tu contraseña',
                       controller: passwordController,
@@ -202,32 +205,28 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-
               const SizedBox(height: 15),
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  Text('¿Olvidaste tu contraseña?',
+                  Text(
+                    '¿Olvidaste tu contraseña?',
                     style: TextStyle(
                       color: Colors.grey.shade600,
                     ),
                   ),
                 ],
               ),
-
               const SizedBox(height: 30),
               MyButton(
                 text: "Iniciar Sesión",
                 color: const Color.fromRGBO(255, 225, 0, 1),
                 onPressed: signUserIn,
               ),
-
-                  ],),
-            ),
-          )
-        )
-      ),
+            ],
+          ),
+        ),
+      ))),
     );
   }
 }

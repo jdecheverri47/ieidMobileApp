@@ -91,7 +91,8 @@ class _UserImageState extends State<UserImage> {
                         Navigator.of(context).pop();
                         _pickImage(ImageSource.gallery);
                       },
-                    )
+                    ),
+                    SizedBox(height: 25)
                   ],
                 )));
   }
